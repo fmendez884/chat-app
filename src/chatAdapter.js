@@ -30,6 +30,7 @@ class ChatAdapter {
 
   static userLoginFetch(userInput) {
     console.log(userInput)
+    // debugger
     return fetch(this.usersUrl(), 
       {
       "method": "POST",
@@ -45,8 +46,8 @@ class ChatAdapter {
   }
 
   static fetchAllChats() {
-    console.log("fetch goes here")
-    console.log(this.chatsUrl())
+    // console.log("fetch goes here")
+    // console.log(this.chatsUrl())
     
     return fetch(this.chatsUrl())
     .then(response => response.json())
@@ -54,8 +55,9 @@ class ChatAdapter {
   }
 
 
-  static postMessageFetch() {
-
+  static postMessageFetch(messageData) {
+    console.log(messageData)
+    // debugger
     return fetch('http://localhost:3000/messages', {
     "method": "POST",
     "headers": {
@@ -63,15 +65,16 @@ class ChatAdapter {
       "Accept" : "application/json"
     },
     "body" : JSON.stringify({
-      "user_id": userId,
-      "chat_id": chatId,
-      "text": textArea.value
+      "user_id": messageData.user_id,
+      "chat_id": messageData.chat_id,
+      "text": messageData.text//textArea.value
     })
   }).then(response => response.json())
-  
+  // debugger
   }
 
   static fetchChatPage(event){
+    // console.log(event.target)
     return fetch(this.chatsUrl() + `${event.target.dataset.id}`)
     .then(response => response.json())
     // .then(data => renderChatRoom(data))

@@ -4,11 +4,12 @@ const USERS_URL = BASE_URL + 'users/'
 
 const mainBody = document.querySelector("body")
 // const mainH1 = document.createElement("h1")
-const mainH1 = document.querySelector("h1")
+// const mainH1 = document.querySelector("h1")
 const mainDiv = document.querySelector("div")
 const chatUl = document.querySelector("#chat-list")
 const messageUl = document.querySelector("#message-list")
 const chatBox = document.querySelector("#chat-box")
+
 const userForm = document.querySelector("#user-form")
 // const userDisplay = document.createElement("div")
 const userDisplay = document.querySelector("#user-display")
@@ -84,7 +85,7 @@ function renderAllChats(json) {
 
 function renderOneMessage(value) {
   console.log(value)
-  renderChatBox()
+  // renderChatBox()
   let textArea = document.querySelector("textarea")
   textArea.value = ""
   let messageLi = document.createElement("li")
@@ -93,30 +94,49 @@ function renderOneMessage(value) {
   messageUl.append(messageLi)
 }
 
+// function renderNewMessage(data) {
+//   console.log(data)
+//   // renderChatBox()
+//   let textArea = document.querySelector("textarea")
+//   textArea.value = ""
+//   let messageLi = document.createElement("li")
+//   messageLi.innerText = `${data.user.name}(${data.updated_at}): ${data.text}`
+//   // debugger
+//   messageUl.append(messageLi)
+// }
+
 function messageFormEvent(event) {
+  event.preventDefault()
+  console.log(event.target)
   let userId = localStorage.userId 
-  let chatTitle = document.querySelector("h1")
+  let chatTitle = document.querySelector("#chat-title")
   let textArea = document.querySelector("textarea")
   let chatId = chatTitle.dataset.id
-
-  ChatAdapter.postMessageFetch()
-  .then(renderOneMessage())
+  let messageText = event.target[0].value
+  console.log(event.target)
+  // debugger
+  ChatAdapter.postMessageFetch(userId, chatId, messageText)
+  .then(json => renderOneMessage(json))
 }
 
 function renderChatRoom(data) {
   console.log(data.name)
-
-  let chatTitle = document.createElement("h1")
+  chatUl.style.display = "none";
+  let chatTitle = document.querySelector("#chat-title")
   chatTitle.innerText = data.name
+  chatTitle.className = "chat-title"
   chatTitle.dataset.id = data.id
-  chatUl.parentNode.replaceChild(chatTitle, chatUl);
+  // chatUl.parentNode.replaceChild(chatTitle, chatUl);
 
   data.messages.forEach(renderOneMessage)
   mainDiv.append(chatBox)
   let textArea = document.querySelector("#messageText")
   let messageForm = document.querySelector("#sendMessageForm")
 
-  messageForm.addEventListener("submit", messageFormEvent(event))
+  // messageForm.addEventListener("submit", function(event){
+  //   event.preventDefault()
+  //   messageFormEvent(event)
+  // })
 }
 
 document.addEventListener("DOMContentLoaded", function(event){
