@@ -1,6 +1,11 @@
 
 class ChatAdapter {
 
+
+  // static actionUrl() {
+  //   return "ws://localhost:3000/cable/"
+  // }
+
   static baseUrl() {
     return 'http://localhost:3000/'
   }
@@ -30,6 +35,7 @@ class ChatAdapter {
 
   static userLoginFetch(userInput) {
     console.log(userInput)
+    // debugger
     return fetch(this.usersUrl(), 
       {
       "method": "POST",
@@ -45,8 +51,8 @@ class ChatAdapter {
   }
 
   static fetchAllChats() {
-    console.log("fetch goes here")
-    console.log(this.chatsUrl())
+    // console.log("fetch goes here")
+    // console.log(this.chatsUrl())
     
     return fetch(this.chatsUrl())
     .then(response => response.json())
@@ -54,8 +60,9 @@ class ChatAdapter {
   }
 
 
-  static postMessageFetch() {
-
+  static postMessageFetch(messageData) {
+    console.log(messageData)
+    // debugger
     return fetch('http://localhost:3000/messages', {
     "method": "POST",
     "headers": {
@@ -63,18 +70,36 @@ class ChatAdapter {
       "Accept" : "application/json"
     },
     "body" : JSON.stringify({
-      "user_id": userId,
-      "chat_id": chatId,
-      "text": textArea.value
+      "user_id": messageData.user_id,
+      "chat_id": messageData.chat_id,
+      "text": messageData.text//textArea.value
     })
   }).then(response => response.json())
-  
+  // debugger
   }
 
-  static fetchChatPage(event){
-    return fetch(this.chatsUrl() + `${event.target.dataset.id}`)
+  static fetchChatPage(chatId){
+    // console.log(event.target)
+    return fetch(this.chatsUrl() + `${chatId}`)
     .then(response => response.json())
+    // debugger
     // .then(data => renderChatRoom(data))
+  }
+
+  static newChatFetch(chatName) {
+    console.log(chatName)
+    // debugger
+    return fetch('http://localhost:3000/chats', {
+    "method": "POST",
+    "headers": {
+      "Content-Type" : "application/json",
+      "Accept" : "application/json"
+    },
+    "body" : JSON.stringify({
+      "name": chatName//textArea.value
+    })
+  }).then(response => response.json())
+  // debugger
   }
 
 }
