@@ -30,7 +30,7 @@ class ChatBox {
 
   renderChatBox() {
     if (this.isLoggedIn()) {
-    this.chatBox.innerHTML = `<textarea id="messageText" class="text" cols="86" rows ="20" name="messageText" form="sendMessageForm"></textarea>
+    this.chatBox.innerHTML = `<textarea id="messageText" style="width:100%" class="text" cols="40" rows ="10" name="messageText" form="sendMessageForm"></textarea>
       <form id="sendMessageForm" name="sendMessageForm" method="post">
         <input type="submit" value="Send" class="sendButton">
       </form>`
@@ -41,6 +41,8 @@ class ChatBox {
 
   messageSent(event){
     event.preventDefault()
+    this.user_id = localStorage.userId
+    // this.chat_id = localStorage.chatId 
     const messageData = this.getMessageData()
     this.form.reset()
     console.log(messageData)

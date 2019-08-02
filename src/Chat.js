@@ -2,6 +2,8 @@ class Chat {
   constructor(chatData) {
     this.id = chatData.id
     this.name = chatData.name
+    this.chatData = chatData
+    // debugger
   }
 
   // likeButtonClicked = () => {
@@ -33,11 +35,13 @@ class Chat {
     // this.chatLi.innerText.addEventListener("click", )
     // chatUl.append(chatLi)
     // renderChatBox()
-    this.chatLi.addEventListener("click", function(event){
+    this.chatLi.addEventListener("click", function (event) {
       // console.log(event.target)
       // ChatAdapter.fetchChatPage(event)
       // .then(messageData => new MessageList)
-      new ChatArea(event)
+      // debugger
+      const chatArea = new ChatArea(event)
+      // chatArea.sideBar()
     })
     return this.chatLi
   }

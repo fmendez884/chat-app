@@ -43,6 +43,7 @@ class Login {
 
     this.userForm.style.display="none";
     this.userDisplay.style.display="block";
+    this.userDisplay.className = "nes-container is-dark"
     this.userDisplay.append(this.userNameDisplay)
     this.userNameDisplay.innerText = localStorage.username + "!"
 
@@ -69,6 +70,7 @@ class Login {
       // debugger
       userform.style.display="block";
       userdisplay.style.display="none";
+      
       chatBox.style.display="none";
 
     })

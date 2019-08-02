@@ -1,6 +1,11 @@
 
 class ChatAdapter {
 
+
+  // static actionUrl() {
+  //   return "ws://localhost:3000/cable/"
+  // }
+
   static baseUrl() {
     return 'http://localhost:3000/'
   }
@@ -73,11 +78,28 @@ class ChatAdapter {
   // debugger
   }
 
-  static fetchChatPage(event){
+  static fetchChatPage(chatId){
     // console.log(event.target)
-    return fetch(this.chatsUrl() + `${event.target.dataset.id}`)
+    return fetch(this.chatsUrl() + `${chatId}`)
     .then(response => response.json())
+    // debugger
     // .then(data => renderChatRoom(data))
+  }
+
+  static newChatFetch(chatName) {
+    console.log(chatName)
+    // debugger
+    return fetch('http://localhost:3000/chats', {
+    "method": "POST",
+    "headers": {
+      "Content-Type" : "application/json",
+      "Accept" : "application/json"
+    },
+    "body" : JSON.stringify({
+      "name": chatName//textArea.value
+    })
+  }).then(response => response.json())
+  // debugger
   }
 
 }

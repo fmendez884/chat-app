@@ -4,35 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet"> 
+    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" /> 
+    <link href="./node_modules/nes.css/css/nes.css" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
     <header id="chat-header">
-        <form id="user-form">
+        <form id="user-form" class="nes-container is-dark">
             Username:
             <input type="text" name="username"> <input type="submit" value="Login" id= "user-form-submit">
         </form>
     </header>
     <!-- <h1> </h1> -->
     
-    <div id="user-display">
+    <div id="user-display" >
 
     </div>
-    <div id="chat-area">
+    <div id="chat-area" class="nes-container is-dark">
         <h1 id="chat-title"> </h1>
-        <ol id="chat-list" >
+        <div id="chat-list-div" class="nes-container.is-dark">
+            <ol id="chat-list" class="nes-container.is-dark" >
+                
+            </ol>
+            <div id="create-div" class="nes-container is-dark">
 
-        </ol>
-        <ul id="message-list">
+            </div>
+        </div>
+        <ul id="message-list" class="nes-container.is-dark">
 
         </ul>
     </div>
     <footer>
-        <div id="chat-box">
+        <div id="chat-box" class="nes-container is-dark">
             
         </div>
     </footer>
 </body>
+    <div class="sidebar" style="display: none"> 
+        <aside class="nes-container is-dark with-title">
+            <span class="title"> User List </span>
+            <ul id="user-list" class="nes-container.is-dark">
+                
+            </ul>
+        </aside>
+    </div>
 <!-- <script src="src/second-index.js" charset="utf-8"></script> -->
 <script src="src/Login.js" charset="utf-8"></script>
 <script src="src/third-index.js" charset="utf-8"></script>
