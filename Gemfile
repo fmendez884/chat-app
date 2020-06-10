@@ -47,3 +47,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #serialize data? 
 gem 'active_model_serializers', '~> 0.10.0', require: true
+
+gem "activesupport", ">= 5.2.4.3"
